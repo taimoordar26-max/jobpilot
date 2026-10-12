@@ -24,5 +24,8 @@
     "node-fetch": "3.3.2",
     "playwright": "1.49.0",
     "sql.js": "1.12.0"
+  },
+  "devDependencies": {
+    "pdf-parse": "^2.4.5"
   }
 }
