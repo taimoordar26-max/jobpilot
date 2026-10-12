@@ -1,4 +1,4 @@
-// scripts/worker-forever.mjs — NEVER-STOP supervisor for the always-on worker.
+﻿// scripts/worker-forever.mjs — NEVER-STOP supervisor for the always-on worker.
 //
 // Runs `src/worker.js` and respawns it if the process ever dies (crash, OOM, external kill),
 // with capped backoff. A CLEAN exit (code 0) means the user pressed Stop (the worker writes
@@ -21,7 +21,7 @@ function start() {
   // If the user asked to stop, don't respawn.
   if (fs.existsSync(STOPFILE)) { log('stop flag present — not starting.'); process.exit(0); }
 
-  const child = spawn('node', [path.join(ROOT, 'src', 'worker.js')], {
+  const child = spawn(process.execPath, [path.join(ROOT, 'src', 'worker.js')], {
     cwd: ROOT, stdio: 'inherit', env: process.env,
   });
 
@@ -39,5 +39,5 @@ function start() {
 
 // Clean up a stale stop flag from a previous run so we actually start.
 try { fs.rmSync(STOPFILE, { force: true }); } catch {}
-log('starting supervised worker (auto-restart on crash)…');
+log('starting supervised worker (auto-restart on crash)...');
 start();

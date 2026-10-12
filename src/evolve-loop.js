@@ -1,4 +1,4 @@
-// src/evolve-loop.js — Background self-evolution loop + worker autostart for the MCP server.
+﻿// src/evolve-loop.js — Background self-evolution loop + worker autostart for the MCP server.
 //
 // Two jobs:
 //   1. AUTO-START the full worker lanes (scout · mailer · applier · connector · evolver) as a
@@ -50,7 +50,7 @@ export function ensureWorkerRunning() {
   if (workerIsLive()) return;                          // already running
   try {
     const supervisor = path.join(ROOT, 'scripts', 'worker-forever.mjs');
-    const child = spawn('node', [supervisor], {
+    const child = spawn(process.execPath, [supervisor], {
       cwd: ROOT,
       detached: true,
       stdio: 'ignore',
