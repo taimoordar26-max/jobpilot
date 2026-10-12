@@ -100,7 +100,7 @@ async function main() {
   // so the server is never left down while the agent/CLI is still using it.
   let restarts = 0;
   const startServer = () => {
-    const srv = spawn('node', [path.join(__dir, 'mcp-server.js')], {
+    const srv = spawn(process.execPath, [path.join(__dir, 'mcp-server.js')], {
       cwd: __dir, stdio: ['inherit', 'inherit', 'inherit'],
     });
     srv.on('exit', (code, signal) => {
