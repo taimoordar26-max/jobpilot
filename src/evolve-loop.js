@@ -50,7 +50,7 @@ export function ensureWorkerRunning() {
   if (workerIsLive()) return;                          // already running
   try {
     const supervisor = path.join(ROOT, 'scripts', 'worker-forever.mjs');
-    const child = spawn('node', [supervisor], {
+    const child = spawn(process.execPath, [supervisor], {
       cwd: ROOT,
       detached: true,
       stdio: 'ignore',

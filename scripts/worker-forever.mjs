@@ -21,7 +21,7 @@ function start() {
   // If the user asked to stop, don't respawn.
   if (fs.existsSync(STOPFILE)) { log('stop flag present — not starting.'); process.exit(0); }
 
-  const child = spawn('node', [path.join(ROOT, 'src', 'worker.js')], {
+  const child = spawn(process.execPath, [path.join(ROOT, 'src', 'worker.js')], {
     cwd: ROOT, stdio: 'inherit', env: process.env,
   });
 
